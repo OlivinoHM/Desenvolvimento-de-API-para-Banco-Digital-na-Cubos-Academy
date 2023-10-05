@@ -42,7 +42,7 @@ const criar = async (req, res) => {
   const { nome, cpf, data_nascimento, telefone, email, senha } = req.body;
 
   if (!nome || !cpf || !data_nascimento || !telefone || !email || !senha) {
-    return res.status(401).json({
+    return res.status(400).json({
       mensagem:
         "Todos os campos nome, cpf, data_nascimento, telefone, email e senha são obrigatórios.",
     });
@@ -83,7 +83,7 @@ const criar = async (req, res) => {
       "./src/bancodedados.js",
       `module.exports = ${dadosAtualizadosStringify};`
     );
-    return res.send();
+    return res.status(201).send();
   } catch (error) {
     return res
       .status(500)
@@ -135,6 +135,7 @@ const atualizar = async (req, res) => {
     };
 
     await atualizarBancoDeDados(dadosAtualizados, res);
+    return res.status(204).send();
   } catch (error) {
     return res
       .status(500)
@@ -155,6 +156,7 @@ const deletar = async (req, res) => {
     dadosAtualizados.contas.splice(indexConta, 1);
 
     await atualizarBancoDeDados(dadosAtualizados, res);
+    return res.status(204).send();
   } catch (error) {
     return res
       .status(500)
@@ -187,6 +189,7 @@ const depositar = async (req, res) => {
     dadosAtualizados.depositos.push(registro);
 
     await atualizarBancoDeDados(dadosAtualizados, res);
+    return res.status(204).send();
   } catch (error) {
     return res
       .status(500)
@@ -219,6 +222,7 @@ const sacar = async (req, res) => {
     dadosAtualizados.saques.push(registro);
 
     await atualizarBancoDeDados(dadosAtualizados, res);
+    return res.status(204).send();
   } catch (error) {
     return res
       .status(500)
@@ -238,12 +242,12 @@ const transferir = async (req, res) => {
       (conta) => conta.numero === String(numeroContaOrigem)
     );
 
-    const indexContaDestindo = dadosAtualizados.contas.findIndex(
+    const indexContaDestino = dadosAtualizados.contas.findIndex(
       (conta) => conta.numero === String(numeroContaDestino)
     );
 
     dadosAtualizados.contas[indexContaOrigem].saldo -= valor;
-    dadosAtualizados.contas[indexContaDestindo].saldo += valor;
+    dadosAtualizados.contas[indexContaDestino].saldo += valor;
 
     const novaData = new Date();
     const formatoData = "dd-MM-yyyy HH:mm:ss";
@@ -259,6 +263,7 @@ const transferir = async (req, res) => {
     dadosAtualizados.transferencias.push(registro);
 
     await atualizarBancoDeDados(dadosAtualizados, res);
+    return res.status(204).send();
   } catch (error) {
     return res
       .status(500)

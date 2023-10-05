@@ -7,8 +7,8 @@
 - [x] Faça o fork desse repositório para o seu GitHub
 - [x] Clone o seu repositório em sua máquina
 - [x] Desenvolva seu projeto, fazendo commits a cada alteração e push
-- [ ] Crie um PR (pull request)
-- [ ] Envie o link do pull request que você criou na plataforma da Cubos
+- [x] Crie um PR (pull request)
+- [x] Envie o link do pull request que você criou na plataforma da Cubos
 
 ### ⚠️ Importante: Se o pull request não for criado e enviado na plataforma o feedback não será fornecido e constará como não entregue
 

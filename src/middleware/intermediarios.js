@@ -65,13 +65,13 @@ const validarNumeroConta = (req, res, next) => {
 
     if (!numeroConta) {
       return res
-        .status(401)
+        .status(400)
         .json({ mensagem: "Necessário fornecer o número da conta." });
     }
 
     if (isNaN(numeroConta)) {
       return res
-        .status(401)
+        .status(400)
         .json({ mensagem: "Necessário fornecer o número da conta válido." });
     }
 
@@ -92,16 +92,16 @@ const validarValor = (req, res, next) => {
     }
 
     if (!valor) {
-      return res.status(401).json({ mensagem: "Necessário fornecer o valor." });
+      return res.status(400).json({ mensagem: "Necessário fornecer o valor." });
     }
 
     if (isNaN(valor)) {
       return res
-        .status(401)
+        .status(400)
         .json({ mensagem: "Necessário fornecer o valor válido." });
     }
     if (valor <= 0) {
-      return res.status(401).json({
+      return res.status(400).json({
         mensagem: "Não é permitido depósitos com valores negativos ou zerados",
       });
     }
@@ -118,7 +118,7 @@ const validarValorPositivo = (req, res, next) => {
   const { valor } = req.body;
 
   if (valor <= 0) {
-    return res.status(401).json({
+    return res.status(400).json({
       mensagem: "O valor não pode ser menor que zero!",
     });
   }
@@ -133,7 +133,7 @@ const validaCPF = (req, res, next) => {
 
   if (buscarCPF) {
     return res
-      .status(401)
+      .status(400)
       .json({ mensagem: "Já existe uma conta com o cpf informado!" });
   }
 
@@ -147,7 +147,7 @@ const validaEmail = (req, res, next) => {
 
   if (buscarEmail) {
     return res
-      .status(401)
+      .status(400)
       .json({ mensagem: "Já existe uma conta com o e-mail informado!" });
   }
 
@@ -160,7 +160,7 @@ const validarSaldo = (req, res, next) => {
   const indexConta = buscarIndexConta(numeroConta, res);
 
   if (contas[indexConta].saldo - valor < 0) {
-    return res.status(401).json({
+    return res.status(400).json({
       mensagem: "Saldo insuficiente",
     });
   }
@@ -173,7 +173,7 @@ const verificarSaldoZerado = (req, res, next) => {
   const indexConta = buscarIndexConta(numeroConta, res);
 
   if (contas[indexConta].saldo > 0) {
-    return res.status(401).json({
+    return res.status(400).json({
       mensagem: "A conta só pode ser removida se o saldo for zero!",
     });
   }
@@ -184,13 +184,13 @@ const validarTransferecia = (req, res, next) => {
   let { numeroContaOrigem, numeroContaDestino, senha, valor } = req.body;
 
   if (!numeroContaOrigem || !numeroContaDestino) {
-    return res.status(401).json({
+    return res.status(400).json({
       mensagem: "O número da conta, valor e senha são obrigatórios!",
     });
   }
 
   if (!senha) {
-    return res.status(401).json({ mensagem: "Necessário fornecer a senha." });
+    return res.status(400).json({ mensagem: "Necessário fornecer a senha." });
   }
 
   const indexContaOrigem = contas.findIndex(
@@ -217,7 +217,7 @@ const validarTransferecia = (req, res, next) => {
     return res.status(403).json({ mensagem: "A senha informada é inválida!" });
   }
   if (contas[indexContaOrigem].saldo - valor < 0) {
-    return res.status(401).json({
+    return res.status(400).json({
       mensagem: "Saldo insuficiente",
     });
   }
