@@ -1,5 +1,6 @@
 const express = require("express");
 const rotas = require("./rotas");
+const intermediarios = require("./middleware/intermediarios");
 
 const app = express();
 
