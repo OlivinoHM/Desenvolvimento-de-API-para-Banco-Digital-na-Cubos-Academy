@@ -2,16 +2,6 @@
 
 # Desafio Módulo 2 - Back-end
 
-## Como entregar?
-
-- [x] Faça o fork desse repositório para o seu GitHub
-- [x] Clone o seu repositório em sua máquina
-- [x] Desenvolva seu projeto, fazendo commits a cada alteração e push
-- [x] Crie um PR (pull request)
-- [x] Envie o link do pull request que você criou na plataforma da Cubos
-
-### ⚠️ Importante: Se o pull request não for criado e enviado na plataforma o feedback não será fornecido e constará como não entregue
-
 ## Descrição do desafio
 
 Você acabou de ser contratado pela melhor empresa de tecnologia do mundo: a **CUBOS**.
@@ -604,6 +594,5 @@ Esse endpoint deverá listar as transações realizadas de uma conta específica
 }
 ```
 
-**LEMBRE-SE**: Feito é melhor do que perfeito, mas não faça mal feito!!!
 
 ###### tags: `back-end` `módulo 2` `nodeJS` `API REST` `desafio`
